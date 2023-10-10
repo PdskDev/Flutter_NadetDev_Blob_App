@@ -25,6 +25,35 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold();
+    return Scaffold(
+      backgroundColor: Colors.red,
+      body: Center(
+        child: Column(
+          children: [
+            const Text(
+              'Welcome',
+              style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 50,
+                  fontWeight: FontWeight.bold),
+            ),
+            const Text(
+              'Personal Blog',
+              style: TextStyle(
+                  color: Colors.white70,
+                  fontSize: 30,
+                  fontWeight: FontWeight.bold),
+            ),
+            const SizedBox(
+              height: 20.0,
+            ),
+            Image.network(
+                'https://www.pngkit.com/png/full/246-2464462_blog-blog-png.png',
+                width: 300.0,
+                height: 300.0),
+          ],
+        ),
+      ),
+    );
   }
 }
