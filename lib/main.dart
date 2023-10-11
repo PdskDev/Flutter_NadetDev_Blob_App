@@ -11,8 +11,10 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'NadetDev Blog',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(
+            seedColor: const Color.fromARGB(255, 31, 151, 250)),
         useMaterial3: true,
       ),
       home: const LoginPage(),
@@ -26,9 +28,10 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.red,
+      backgroundColor: const Color.fromARGB(255, 97, 180, 247),
       body: Center(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
               'Welcome',
@@ -38,19 +41,37 @@ class LoginPage extends StatelessWidget {
                   fontWeight: FontWeight.bold),
             ),
             const Text(
-              'Personal Blog',
+              'To Your Personal Blog',
               style: TextStyle(
-                  color: Colors.white70,
-                  fontSize: 30,
+                  color: Colors.white,
+                  fontSize: 20,
                   fontWeight: FontWeight.bold),
             ),
             const SizedBox(
               height: 20.0,
             ),
-            Image.network(
-                'https://www.pngkit.com/png/full/246-2464462_blog-blog-png.png',
-                width: 300.0,
-                height: 300.0),
+            Image.asset('images/logo3.png', height: 300, width: 350),
+            const SizedBox(
+              height: 20.0,
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.blue.shade600,
+                minimumSize: const Size(300, 40),
+              ),
+              child: const Text('Login'),
+            ),
+            ElevatedButton(
+              onPressed: () {},
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.white,
+                foregroundColor: Colors.blue.shade600,
+                minimumSize: const Size(300, 40),
+              ),
+              child: const Text('Register'),
+            )
           ],
         ),
       ),
