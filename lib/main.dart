@@ -28,6 +28,7 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       backgroundColor: const Color.fromARGB(255, 97, 180, 247),
       body: Center(
         child: Column(
@@ -61,16 +62,22 @@ class LoginPage extends StatelessWidget {
                 foregroundColor: Colors.blue.shade600,
                 minimumSize: const Size(300, 40),
               ),
-              child: const Text('Login'),
+              child: const Text(
+                'Login',
+                style: TextStyle(fontSize: 18.0),
+              ),
             ),
             ElevatedButton(
               onPressed: () {},
               style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
-                foregroundColor: Colors.blue.shade600,
+                backgroundColor: Colors.blue.shade200,
+                foregroundColor: Colors.white,
                 minimumSize: const Size(300, 40),
               ),
-              child: const Text('Register'),
+              child: const Text(
+                'Register',
+                style: TextStyle(fontSize: 18.0),
+              ),
             )
           ],
         ),
