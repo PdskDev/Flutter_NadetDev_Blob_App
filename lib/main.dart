@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:my_nadetdev_blog/home_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,9 +14,7 @@ class MyApp extends StatelessWidget {
       title: 'NadetDev Blog',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-            seedColor: const Color.fromARGB(255, 31, 151, 250)),
-        useMaterial3: true,
+        primaryColor: Colors.blue,
       ),
       home: const LoginPage(),
     );
@@ -28,42 +27,46 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
       backgroundColor: const Color.fromARGB(255, 97, 180, 247),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              'Welcome',
+              'Bienvenue',
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 50,
                   fontWeight: FontWeight.bold),
             ),
             const Text(
-              'To Your Personal Blog',
+              'Sur Le Mans Blog!',
               style: TextStyle(
                   color: Colors.white,
-                  fontSize: 20,
+                  fontSize: 25,
                   fontWeight: FontWeight.bold),
             ),
             const SizedBox(
               height: 20.0,
             ),
-            Image.asset('images/logo3.png', height: 300, width: 350),
+            Image.asset('images/logo.png', height: 350, width: 350),
             const SizedBox(
               height: 20.0,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (BuildContext context) {
+                  return const HomePage();
+                }));
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.white,
                 foregroundColor: Colors.blue.shade600,
                 minimumSize: const Size(300, 40),
               ),
               child: const Text(
-                'Login',
+                'Connexion',
                 style: TextStyle(fontSize: 18.0),
               ),
             ),
@@ -75,7 +78,7 @@ class LoginPage extends StatelessWidget {
                 minimumSize: const Size(300, 40),
               ),
               child: const Text(
-                'Register',
+                'Inscription',
                 style: TextStyle(fontSize: 18.0),
               ),
             )
