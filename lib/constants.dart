@@ -1,3 +1,26 @@
+const String appName = 'NadetDev Blog';
+
+const String loginPageHeaderFirstTitle = "Bienvenue";
+const String loginPageHeaderSecondTitle = "Sur Le Mans Blog!";
+const String loginPageButtonLoginLabel = "Connexion";
+const String loginPageButtonRegisterLabel = "Inscription";
+const String loginPageImagePath = 'images/logo.png';
+
+const String drawerTitle = 'NadetDev';
+const String drawerSettingTitle = 'Réglages';
+const String drawerLogoutTitle = 'Se déconnecter';
+
+const String buttonTagLabel01 = 'L\'histoire de l\'Automobile';
+const String buttonTagLabel02 = '24h Le Mans';
+const String buttonTagLabel03 = 'Arc de la Nature';
+const String buttonTagLabel04 = 'Ville de l\'aviation';
+const String buttonTagLabel05 = 'Université Le Mans';
+const String buttonTagLabel06 = 'Antoine de Saint-Exupéry';
+const String buttonTagLabel07 = 'Rillettes';
+
+const String floatingButtonLabel = 'Post';
+const String floatingButtonToolTip = 'Ecrire un post';
+
 const String titre24hLeMans = "Les 100 ans des 24H du Mans";
 const String text24hLeMans =
     "Le centenaire de la plus grande course d’endurance du monde se déroulera les 10 & 11 juin 2023. À vivre et à partager en famille ou entre amis. 1923 – 2023, 100 ans d’histoires. La Sarthe s’apprête à célébrer les 100 ans de la course mythique des 24 Heures du Mans. Créé en 1923, la compétition a durablement marqué l’histoire du sport automobile mondial et fait partie de l’identité sarthoise. De la première victoire de la voiture Chenard et Walcker en 1923 à la dernière victoire de l’hypercar de Toyota en 2022, les 90 éditions ont été le théâtre de luttes mécaniques et technologiques qui ont fait avancer le monde automobile. 2023, la course du siècle. L’édition du centenaire des 24 Heures du Mans s’annonce historique. Avec le nouveau règlement introduit en 2020, remplaçant les LMP1 (Le Mans Prototype) par des HyperCars (LMH et LMDH), les grands constructeurs ayant forgés le mythe du Mans sont de retour. La bagarre entre Toyota, Ferrari (dont c’est le grand retour après 40 ans d’absence), Porsche (détenteur du nombre de victoires sur Le Mans), Peugeot et Cadillac s’annonce épique ! Le programme des 24 Heures du Mans 2023. À événement exceptionnel, programmation exceptionnelle. L’Automobile Club de l’Ouest, le Département de la Sarthe et la Ville du Mans vous prépare de nombreux événements pour célébrer le centenaire. Exposition de plus de 60 voitures ayant gagnés ou marqués l’histoire de la course entre juin et juillet, parade des pilotes le vendredi, show de drones le samedi … Découvrez tous les événements à vivre pour célébrer les 24 Heures du Mans. - sarthetourisme.com";
@@ -31,3 +54,13 @@ const imageLeMansRencontrerLesMonceaux = 'images/peoplecolor.png';
 
 const double imageWidth = 200;
 const double imageHeight = 150;
+
+const String composePageTitle = 'Composer et publier un post';
+const String composeFormTitleLabel = 'Titre';
+const String composeFormTitleHintText = 'Saisir le titre';
+const String composeFormTextLabel = 'Corps';
+const String composeFormTextHintLabel = 'Saisir votre post';
+const String composeButtonSelectImage = 'Sélectionner une image';
+const String composeButtonPost = 'Publier';
+const String composeButtonErase = 'Effaçer';
+const String composeButtonCancel = 'Annuler';

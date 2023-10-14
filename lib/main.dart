@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:my_nadetdev_blog/home_page.dart';
+import 'constants.dart' as app_constants;
 
 void main() {
   runApp(const MyApp());
@@ -11,7 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'NadetDev Blog',
+      title: app_constants.appName,
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Colors.blue,
@@ -33,14 +34,14 @@ class LoginPage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             const Text(
-              'Bienvenue',
+              app_constants.loginPageHeaderFirstTitle,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 50,
                   fontWeight: FontWeight.bold),
             ),
             const Text(
-              'Sur Le Mans Blog!',
+              app_constants.loginPageHeaderSecondTitle,
               style: TextStyle(
                   color: Colors.white,
                   fontSize: 25,
@@ -49,7 +50,8 @@ class LoginPage extends StatelessWidget {
             const SizedBox(
               height: 20.0,
             ),
-            Image.asset('images/logo.png', height: 350, width: 350),
+            Image.asset(app_constants.loginPageImagePath,
+                height: 350, width: 350),
             const SizedBox(
               height: 20.0,
             ),
@@ -66,7 +68,7 @@ class LoginPage extends StatelessWidget {
                 minimumSize: const Size(300, 40),
               ),
               child: const Text(
-                'Connexion',
+                app_constants.loginPageButtonLoginLabel,
                 style: TextStyle(fontSize: 18.0),
               ),
             ),
@@ -78,7 +80,7 @@ class LoginPage extends StatelessWidget {
                 minimumSize: const Size(300, 40),
               ),
               child: const Text(
-                'Inscription',
+                app_constants.loginPageButtonRegisterLabel,
                 style: TextStyle(fontSize: 18.0),
               ),
             )

@@ -1,15 +1,55 @@
 import 'package:flutter/material.dart';
+import 'package:my_nadetdev_blog/compose_page.dart';
 import 'package:my_nadetdev_blog/description_page.dart';
 import 'package:my_nadetdev_blog/main.dart';
-import 'constants.dart' as constant_text_app;
+import 'constants.dart' as app_constants;
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  Color bgColor = Colors.white;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      backgroundColor: bgColor,
+      floatingActionButton: FloatingActionButton.extended(
+        onPressed: () {
+          Navigator.of(context).push(
+            MaterialPageRoute(
+              builder: (BuildContext context) {
+                return const ComposePage();
+              },
+            ),
+          );
+        },
+        elevation: 12,
+        tooltip: app_constants.floatingButtonToolTip,
+        label: const Text(app_constants.floatingButtonLabel),
+        icon: const Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
+      appBar: AppBar(
+        actions: [
+          IconButton(
+            onPressed: () {
+              setState(() {
+                if (bgColor == Colors.white) {
+                  bgColor = Colors.blue.shade100;
+                } else {
+                  bgColor = Colors.white;
+                }
+              });
+            },
+            icon: const Icon(Icons.color_lens),
+          )
+        ],
+      ),
       drawer: SafeArea(
         child: Drawer(
           child: Column(
@@ -18,7 +58,7 @@ class HomePage extends StatelessWidget {
                 decoration: BoxDecoration(color: Colors.blue),
                 child: ListTile(
                   title: Text(
-                    'NadetDev',
+                    app_constants.drawerTitle,
                     style: TextStyle(color: Colors.white, fontSize: 20),
                   ),
                 ),
@@ -27,7 +67,7 @@ class HomePage extends StatelessWidget {
                 onTap: () {},
                 leading: const Icon(Icons.settings),
                 title: const Text(
-                  'Réglages',
+                  app_constants.drawerSettingTitle,
                   style: TextStyle(color: Colors.black, fontSize: 17),
                 ),
               ),
@@ -43,7 +83,7 @@ class HomePage extends StatelessWidget {
                 },
                 leading: const Icon(Icons.logout),
                 title: const Text(
-                  'Se déconnecter',
+                  app_constants.drawerLogoutTitle,
                   style: TextStyle(color: Colors.black, fontSize: 17),
                 ),
               ),
@@ -66,7 +106,7 @@ class HomePage extends StatelessWidget {
                         backgroundColor: Colors.blue,
                         foregroundColor: Colors.white,
                         shape: const StadiumBorder()),
-                    child: const Text("L'histoire de l'Automobile"),
+                    child: const Text(app_constants.buttonTagLabel01),
                   ),
                   ElevatedButton(
                     onPressed: () {},
@@ -74,7 +114,7 @@ class HomePage extends StatelessWidget {
                         backgroundColor: Colors.blue,
                         foregroundColor: Colors.white,
                         shape: const StadiumBorder()),
-                    child: const Text('24h Le Mans'),
+                    child: const Text(app_constants.buttonTagLabel02),
                   ),
                   ElevatedButton(
                     onPressed: () {},
@@ -82,7 +122,7 @@ class HomePage extends StatelessWidget {
                         backgroundColor: Colors.blue,
                         foregroundColor: Colors.white,
                         shape: const StadiumBorder()),
-                    child: const Text('Arc de la Nature'),
+                    child: const Text(app_constants.buttonTagLabel03),
                   ),
                   ElevatedButton(
                     onPressed: () {},
@@ -90,7 +130,7 @@ class HomePage extends StatelessWidget {
                         backgroundColor: Colors.blue,
                         foregroundColor: Colors.white,
                         shape: const StadiumBorder()),
-                    child: const Text("Ville de l'aviation"),
+                    child: const Text(app_constants.buttonTagLabel04),
                   ),
                   ElevatedButton(
                     onPressed: () {},
@@ -98,7 +138,7 @@ class HomePage extends StatelessWidget {
                         backgroundColor: Colors.blue,
                         foregroundColor: Colors.white,
                         shape: const StadiumBorder()),
-                    child: const Text('Université Le Mans'),
+                    child: const Text(app_constants.buttonTagLabel05),
                   ),
                   ElevatedButton(
                     onPressed: () {},
@@ -106,7 +146,7 @@ class HomePage extends StatelessWidget {
                         backgroundColor: Colors.blue,
                         foregroundColor: Colors.white,
                         shape: const StadiumBorder()),
-                    child: const Text("Antoine de Saint-Exupéry"),
+                    child: const Text(app_constants.buttonTagLabel06),
                   ),
                   ElevatedButton(
                     onPressed: () {},
@@ -114,7 +154,7 @@ class HomePage extends StatelessWidget {
                         backgroundColor: Colors.blue,
                         foregroundColor: Colors.white,
                         shape: const StadiumBorder()),
-                    child: const Text('Rillettes'),
+                    child: const Text(app_constants.buttonTagLabel07),
                   ),
                 ],
               ),
@@ -125,9 +165,9 @@ class HomePage extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (BuildContext context) {
                       return const DescriptionPage(
-                        title: constant_text_app.titre24hLeMans,
-                        description: constant_text_app.text24hLeMans,
-                        imagePath: constant_text_app.image24hLeMans,
+                        title: app_constants.titre24hLeMans,
+                        description: app_constants.text24hLeMans,
+                        imagePath: app_constants.image24hLeMans,
                       );
                     },
                   ),
@@ -155,13 +195,13 @@ class HomePage extends StatelessWidget {
                   child: Column(
                     children: [
                       Image.asset(
-                        constant_text_app.image24hLeMans,
-                        width: constant_text_app.imageWidth,
-                        height: constant_text_app.imageHeight,
+                        app_constants.image24hLeMans,
+                        width: app_constants.imageWidth,
+                        height: app_constants.imageHeight,
                       ),
                       const ListTile(
                         title: Text(
-                          constant_text_app.titre24hLeMans,
+                          app_constants.titre24hLeMans,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         trailing: Icon(Icons.arrow_forward_ios_rounded),
@@ -178,9 +218,9 @@ class HomePage extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (BuildContext context) {
                       return const DescriptionPage(
-                        title: constant_text_app.titreLeMansVilleChampions,
-                        description: constant_text_app.textLeMansVilleChampions,
-                        imagePath: constant_text_app.imageLeMansVilleChampions,
+                        title: app_constants.titreLeMansVilleChampions,
+                        description: app_constants.textLeMansVilleChampions,
+                        imagePath: app_constants.imageLeMansVilleChampions,
                       );
                     },
                   ),
@@ -208,13 +248,13 @@ class HomePage extends StatelessWidget {
                   child: Column(
                     children: [
                       Image.asset(
-                        constant_text_app.imageLeMansVilleChampions,
-                        width: constant_text_app.imageWidth,
-                        height: constant_text_app.imageHeight,
+                        app_constants.imageLeMansVilleChampions,
+                        width: app_constants.imageWidth,
+                        height: app_constants.imageHeight,
                       ),
                       const ListTile(
                         title: Text(
-                          constant_text_app.titreLeMansVilleChampions,
+                          app_constants.titreLeMansVilleChampions,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         trailing: Icon(Icons.arrow_forward_ios_rounded),
@@ -231,9 +271,9 @@ class HomePage extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (BuildContext context) {
                       return const DescriptionPage(
-                        title: constant_text_app.titreLeMansGourments,
-                        description: constant_text_app.textLeMansGourments,
-                        imagePath: constant_text_app.imageLeMansGourments,
+                        title: app_constants.titreLeMansGourments,
+                        description: app_constants.textLeMansGourments,
+                        imagePath: app_constants.imageLeMansGourments,
                       );
                     },
                   ),
@@ -261,13 +301,13 @@ class HomePage extends StatelessWidget {
                   child: Column(
                     children: [
                       Image.asset(
-                        constant_text_app.imageLeMansGourments,
-                        width: constant_text_app.imageWidth,
-                        height: constant_text_app.imageHeight,
+                        app_constants.imageLeMansGourments,
+                        width: app_constants.imageWidth,
+                        height: app_constants.imageHeight,
                       ),
                       const ListTile(
                         title: Text(
-                          constant_text_app.titreLeMansGourments,
+                          app_constants.titreLeMansGourments,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         trailing: Icon(Icons.arrow_forward_ios_rounded),
@@ -284,9 +324,9 @@ class HomePage extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (BuildContext context) {
                       return const DescriptionPage(
-                        title: constant_text_app.titreLeMansEcoResponsable,
-                        description: constant_text_app.textLeMansEcoResponsable,
-                        imagePath: constant_text_app.imageLeMansEcoResponsable,
+                        title: app_constants.titreLeMansEcoResponsable,
+                        description: app_constants.textLeMansEcoResponsable,
+                        imagePath: app_constants.imageLeMansEcoResponsable,
                       );
                     },
                   ),
@@ -314,13 +354,13 @@ class HomePage extends StatelessWidget {
                   child: Column(
                     children: [
                       Image.asset(
-                        constant_text_app.imageLeMansEcoResponsable,
-                        width: constant_text_app.imageWidth,
-                        height: constant_text_app.imageHeight,
+                        app_constants.imageLeMansEcoResponsable,
+                        width: app_constants.imageWidth,
+                        height: app_constants.imageHeight,
                       ),
                       const ListTile(
                         title: Text(
-                          constant_text_app.titreLeMansEcoResponsable,
+                          app_constants.titreLeMansEcoResponsable,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         trailing: Icon(Icons.arrow_forward_ios_rounded),
@@ -337,11 +377,9 @@ class HomePage extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (BuildContext context) {
                       return const DescriptionPage(
-                        title: constant_text_app.titreLeMansEtudesInnovations,
-                        description:
-                            constant_text_app.textLeMansEtudesInnovations,
-                        imagePath:
-                            constant_text_app.imageLeMansEtudesInnovations,
+                        title: app_constants.titreLeMansEtudesInnovations,
+                        description: app_constants.textLeMansEtudesInnovations,
+                        imagePath: app_constants.imageLeMansEtudesInnovations,
                       );
                     },
                   ),
@@ -369,13 +407,13 @@ class HomePage extends StatelessWidget {
                   child: Column(
                     children: [
                       Image.asset(
-                        constant_text_app.imageLeMansEtudesInnovations,
-                        width: constant_text_app.imageWidth,
-                        height: constant_text_app.imageHeight,
+                        app_constants.imageLeMansEtudesInnovations,
+                        width: app_constants.imageWidth,
+                        height: app_constants.imageHeight,
                       ),
                       const ListTile(
                         title: Text(
-                          constant_text_app.titreLeMansEtudesInnovations,
+                          app_constants.titreLeMansEtudesInnovations,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         trailing: Icon(Icons.arrow_forward_ios_rounded),
@@ -392,12 +430,11 @@ class HomePage extends StatelessWidget {
                   MaterialPageRoute(
                     builder: (BuildContext context) {
                       return const DescriptionPage(
-                        title:
-                            constant_text_app.titreLeMansRencontrerLesManceaux,
+                        title: app_constants.titreLeMansRencontrerLesManceaux,
                         description:
-                            constant_text_app.textLeMansRencontrerLesManceaux,
+                            app_constants.textLeMansRencontrerLesManceaux,
                         imagePath:
-                            constant_text_app.imageLeMansRencontrerLesMonceaux,
+                            app_constants.imageLeMansRencontrerLesMonceaux,
                       );
                     },
                   ),
@@ -425,13 +462,13 @@ class HomePage extends StatelessWidget {
                   child: Column(
                     children: [
                       Image.asset(
-                        constant_text_app.imageLeMansRencontrerLesMonceaux,
-                        width: constant_text_app.imageWidth,
-                        height: constant_text_app.imageHeight,
+                        app_constants.imageLeMansRencontrerLesMonceaux,
+                        width: app_constants.imageWidth,
+                        height: app_constants.imageHeight,
                       ),
                       const ListTile(
                         title: Text(
-                          constant_text_app.titreLeMansRencontrerLesManceaux,
+                          app_constants.titreLeMansRencontrerLesManceaux,
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                         trailing: Icon(Icons.arrow_forward_ios_rounded),
