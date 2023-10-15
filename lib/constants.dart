@@ -57,10 +57,20 @@ const double imageHeight = 150;
 
 const String composePageTitle = 'Composer et publier un post';
 const String composeFormTitleLabel = 'Titre';
-const String composeFormTitleHintText = 'Saisir le titre';
-const String composeFormTextLabel = 'Corps';
+const String composeFormTitleHintText = 'Saisir le titre ';
+const String composeFormTextLabel = 'Saisir le contenu';
 const String composeFormTextHintLabel = 'Saisir votre post';
 const String composeButtonSelectImage = 'Sélectionner une image';
 const String composeButtonPost = 'Publier';
 const String composeButtonErase = 'Effaçer';
 const String composeButtonCancel = 'Annuler';
+const String composeMessagePostInProgress = 'Le post encours de publication...';
+const String composeErrorMessageTitle = 'Merci de saisir un titre';
+const String composeErrorMessageContent = 'Merci de saisir un contenu';
+
+const double buttonLabelSize = 18.0;
+
+const String imagePickerSelectSource = 'Choisir l\'image depuis ?';
+const String imagePickerGallery = 'Gallerie';
+const String imagePickerCamera = 'Camera';
+const String imagePickerNoImageMessage = 'Image d\'illusatrtion absente';
