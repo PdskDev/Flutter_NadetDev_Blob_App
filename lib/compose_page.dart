@@ -3,9 +3,9 @@ import 'dart:io';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:my_nadetdev_blog/home_page.dart';
-import 'package:my_nadetdev_blog/image_from_gallery.dart';
 import 'constants.dart' as app_constants;
 
 enum ImageSourceType { gallery, camera }
@@ -43,6 +43,9 @@ class _PostComposeFormState extends State<PostComposeForm> {
   late AutovalidateMode _autoValidate = AutovalidateMode.disabled;
   XFile? image;
   final ImagePicker picker = ImagePicker();
+  final blogLeMans = Hive.box('lemans_blog');
+  List<Map<String, dynamic>> listCurrentPosts = [];
+  late String postImagePath;
 
   @override
   void initState() {
@@ -56,29 +59,53 @@ class _PostComposeFormState extends State<PostComposeForm> {
   }
 
   void resetAllInputs() {
-    titleFieldController.clear();
-    contentFieldController.clear();
-    setState(() => _autoValidate = AutovalidateMode.always);
+    if (titleFieldController.text.isNotEmpty) {
+      titleFieldController.clear();
+    }
+
+    if (contentFieldController.text.isNotEmpty) {
+      contentFieldController.clear();
+    }
+
+    setState(() => _autoValidate = AutovalidateMode.onUserInteraction);
     titleFieldFocusNode.requestFocus();
     image = null;
   }
 
-  void _handleURLButtonPress(BuildContext context, var type) {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => ImageFromGalleryExt(type: type)));
+  Future<void> addNewPost(Map<String, dynamic> newPost) async {
+    await blogLeMans.add(newPost);
+    listAllPosts();
+  }
+
+  void listAllPosts() {
+    final dataPosts = blogLeMans.keys.map((key) {
+      final value = blogLeMans.get(key);
+      return {"key": key, "title": value["title"], "content": value['content']};
+    }).toList();
+
+    setState(() {
+      listCurrentPosts = dataPosts.reversed.toList();
+      // we use "reversed" to sort items in order from the latest to the oldest
+    });
+  }
+
+  void getAllPosts() {
+    listAllPosts();
+    if (kDebugMode) {
+      print(listCurrentPosts.toList());
+    }
   }
 
   Future pickImage(ImageSource media) async {
     try {
-      var photo = await picker.pickImage(source: media);
-      if (photo == null) return;
+      var photo = await picker.pickImage(
+          source: media, imageQuality: 70, maxHeight: 150, maxWidth: 200);
+      if (photo == null) return null;
 
       setState(() => image = photo);
     } on PlatformException catch (e) {
       if (kDebugMode) {
-        print('Failed to pick image: $e');
+        print('${app_constants.imagePickerFileErrorMessage}$e');
       }
     }
   }
@@ -147,10 +174,12 @@ class _PostComposeFormState extends State<PostComposeForm> {
                   autofocus: true,
                   focusNode: titleFieldFocusNode,
                   decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: app_constants.composeFormTitleLabel,
-                      hintText: app_constants.composeFormTitleHintText,
-                      alignLabelWithHint: true),
+                    border: OutlineInputBorder(),
+                    labelText: app_constants.composeFormTitleLabel,
+                    hintText: app_constants.composeFormTitleHintText,
+                    alignLabelWithHint: true,
+                    errorStyle: TextStyle(fontSize: 18),
+                  ),
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return app_constants.composeErrorMessageTitle;
@@ -163,26 +192,26 @@ class _PostComposeFormState extends State<PostComposeForm> {
               Padding(
                 padding:
                     const EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                child: Expanded(
-                  child: TextFormField(
-                    keyboardType: TextInputType.multiline,
-                    minLines: 8,
-                    maxLines: 15,
-                    maxLength: 1000,
-                    decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: app_constants.composeFormTextLabel,
-                        hintText: app_constants.composeFormTextHintLabel,
-                        alignLabelWithHint: true),
-                    validator: (value) {
-                      if (value == null || value.isEmpty) {
-                        return app_constants.composeErrorMessageContent;
-                      }
-                      return null;
-                    },
-                    style: const TextStyle(fontSize: 20),
-                    controller: contentFieldController,
+                child: TextFormField(
+                  keyboardType: TextInputType.multiline,
+                  minLines: 7,
+                  maxLines: 15,
+                  maxLength: 1000,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: app_constants.composeFormTextLabel,
+                    hintText: app_constants.composeFormTextHintLabel,
+                    alignLabelWithHint: true,
+                    errorStyle: TextStyle(fontSize: 18),
                   ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return app_constants.composeErrorMessageContent;
+                    }
+                    return null;
+                  },
+                  style: const TextStyle(fontSize: 20),
+                  controller: contentFieldController,
                 ),
               ),
               Padding(
@@ -195,9 +224,12 @@ class _PostComposeFormState extends State<PostComposeForm> {
                     backgroundColor: Colors.blue,
                     foregroundColor: Colors.white,
                   ),
-                  label: const Text(
-                    app_constants.composeButtonSelectImage,
-                    style: TextStyle(fontSize: app_constants.buttonLabelSize),
+                  label: Text(
+                    image == null
+                        ? app_constants.composeButtonSelectImage
+                        : app_constants.composeButtonModifyImage,
+                    style: const TextStyle(
+                        fontSize: app_constants.buttonLabelSize),
                   ),
                 ),
               ),
@@ -233,12 +265,18 @@ class _PostComposeFormState extends State<PostComposeForm> {
                     ElevatedButton.icon(
                       onPressed: () {
                         if (_formKey.currentState!.validate()) {
+                          addNewPost({
+                            "title": titleFieldController.text,
+                            "content": contentFieldController.text
+                          });
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(
                               content: Text(
                                   app_constants.composeMessagePostInProgress),
                             ),
                           );
+                          resetAllInputs();
+                          getAllPosts();
                         }
                       },
                       icon: const Icon(Icons.send),

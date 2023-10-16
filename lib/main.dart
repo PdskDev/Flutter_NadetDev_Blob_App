@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/adapters.dart';
 import 'package:my_nadetdev_blog/home_page.dart';
 import 'constants.dart' as app_constants;
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  await Hive.openBox('lemans_blog');
   runApp(const MyApp());
 }
 

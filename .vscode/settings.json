@@ -1,3 +1,5 @@
 {
-  "java.compile.nullAnalysis.mode": "automatic"
+  "java.compile.nullAnalysis.mode": "automatic",
+  "cmake.sourceDirectory": "E:/Devs/Flutter/my_nadetdev_blog/windows/flutter",
+  "java.configuration.updateBuildConfiguration": "interactive"
 }

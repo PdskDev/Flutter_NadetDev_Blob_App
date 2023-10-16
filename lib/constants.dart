@@ -60,7 +60,8 @@ const String composeFormTitleLabel = 'Titre';
 const String composeFormTitleHintText = 'Saisir le titre ';
 const String composeFormTextLabel = 'Saisir le contenu';
 const String composeFormTextHintLabel = 'Saisir votre post';
-const String composeButtonSelectImage = 'Sélectionner une image';
+const String composeButtonSelectImage = 'Ajouter une image';
+const String composeButtonModifyImage = 'Modifier l\'image';
 const String composeButtonPost = 'Publier';
 const String composeButtonErase = 'Effaçer';
 const String composeButtonCancel = 'Annuler';
@@ -74,3 +75,5 @@ const String imagePickerSelectSource = 'Choisir l\'image depuis ?';
 const String imagePickerGallery = 'Gallerie';
 const String imagePickerCamera = 'Camera';
 const String imagePickerNoImageMessage = 'Image d\'illusatrtion absente';
+const String imagePickerFileErrorMessage =
+    'Echec de la récupération de l\'image: ';
